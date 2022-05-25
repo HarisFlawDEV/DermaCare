@@ -5,6 +5,7 @@ const passport = require("passport");
 const { connect } = require("mongoose");
 const { success, error } = require("consola");
 
+
 // Bring in the app constants
 const { DB, PORT } = require("./config");
 
@@ -18,10 +19,48 @@ app.use(passport.initialize());
 
 require("./middlewares/passport")(passport);
 
+
+// // init gfs
+// let gfs;
+// conn.once("open", () => {
+//     // init stream
+//     gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+//         bucketName: "uploads"
+//     });
+// });
+
+// // Storage
+// const storage = new GridFsStorage({
+//     url: mongoURI,
+//     file: (req, file) => {
+//         return new Promise((resolve, reject) => {
+//             crypto.randomBytes(16, (err, buf) => {
+//                 if (err) {
+//                     return reject(err);
+//                 }
+//                 const filename = buf.toString("hex") + path.extname(file.originalname);
+//                 const fileInfo = {
+//                     filename: filename,
+//                     bucketName: "uploads"
+//                 };
+//                 resolve(fileInfo);
+//             });
+//         });
+//     }
+// });
+
+// const upload = multer({
+//     storage
+// });
+
+
+
 // User Router Middleware
 app.use("/api/users", require("./routes/users"));
 app.use("/api/reports", require("./routes/reports"));
 app.use("/api/doctors", require("./routes/doctor"));
+app.use("/api/review", require("./routes/review"));
+
 
 
 const startApp = async() => {

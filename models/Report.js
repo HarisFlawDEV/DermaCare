@@ -11,6 +11,11 @@ const ReportSchema = new Schema({
         type: String
     },
 
+    reportpdf: {
+        type: String
+    },
+
+
     //for patients
     User: {
         type: Schema.Types.ObjectId,
